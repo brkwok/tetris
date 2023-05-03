@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import { createBoard } from "../util/boardUtil";
+import React from "react";
+import Cell from "./Cell";
 
-const Board = ({row, col}) => {
-  const [board, setBoard] = useState(createBoard(row, col));
-  
-  return (
-    <div>
+const Board = ({ board, dims }) => {
 
-    </div>
-  )
-}
+	return (
+		<div className="">
+			{board.map((row, i) => {
+				return row.map((cell, j) => {
+					return (
+						<Cell
+							key={`${i},${j}`}
+							className={cell.className}
+							filled={cell.filled}
+						/>
+					);
+				});
+			})}
+		</div>
+	);
+};
 
-export default Board
+export default Board;

@@ -1,11 +1,7 @@
 import React from "react";
 
-const Cell = () => {
-  return(
-    <div className="w-2 h-2 border border-slate-300">
-      cell
-    </div>
-  )
-}
+const Cell = ({ className }) => {
+	return <div className="h-4 w-4 border border-black bg-white"></div>;
+};
 
 export default Cell;

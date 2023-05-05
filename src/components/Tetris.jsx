@@ -11,7 +11,7 @@ const Tetris = ({ rows, cols }) => {
 	};
 
 	return (
-		<div className="">
+		<div className="relative flex justify-center align-middle">
 			{gameOver ? <Menu onClick={handleStart} /> : null}
 
 			<GamePanel rows={rows} cols={cols} resetGameOver={resetGameOver} />

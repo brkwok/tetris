@@ -1,9 +1,8 @@
 import Tetris from "./components/Tetris";
-import Menu from "./components/Menu";
 
 function App() {
 	return (
-		<div className="text-center text-white bg-blue-400 p-[20px]">
+		<div className="text-center text-white bg-white p-4 flex items-center justify-center">
 			<Tetris rows={20} cols={10} />
 		</div>
 	);

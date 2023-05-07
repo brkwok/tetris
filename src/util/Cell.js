@@ -1,4 +1,4 @@
 export const defaultCell = {
-	color: "",
+	type: "E",
 	filled: false,
 };

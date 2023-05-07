@@ -45,6 +45,7 @@ export const TETROMINOES = {
 			[0, 1, 1],
 			[0, 0, 0],
 		],
+		type: "Z",
 	},
 	T: {
 		shape: [
@@ -63,20 +64,14 @@ export const randomTetrominoes = () => {
 	return TETROMINOES[tetrominoKey];
 };
 
-export const transferToBoard = ({
-	isFilled,
-	className,
-	shape,
-	position,
-	board,
-}) => {
+export const transferToBoard = ({ isFilled, type, shape, position, board }) => {
 	shape.forEach((row, y) => {
 		row.forEach((cell, x) => {
 			if (cell) {
 				const filled = isFilled;
 				const _y = position.row + y;
 				const _x = position.col + x;
-				board[_y][_x] = { filled, className };
+				board[_y][_x] = { filled, type };
 			}
 		});
 	});

@@ -1,13 +1,13 @@
 import React from "react";
 
 const tetrominoes = {
-  "i": "bg-cyan-400",
-  "j": "bg-blue-400",
-  "l": "bg-orange-400",
-  "t": "bg-pink-400",
-  "z": "bg-red-400",
-  "s": "bg-green-400",
-  "o": "bg-yellow-400",
+  "I": "bg-cyan-400",
+  "J": "bg-blue-400",
+  "L": "bg-orange-400",
+  "T": "bg-pink-400",
+  "Z": "bg-red-400",
+  "S": "bg-green-400",
+  "O": "bg-yellow-400",
 }
 
 const Cell = ({ className, type }) => {

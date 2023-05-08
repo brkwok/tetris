@@ -8,7 +8,7 @@ const tetrominoes = {
 	Z: "bg-red-400",
 	S: "bg-green-400",
 	O: "bg-yellow-400",
-	E: "bg-blue-300",
+	E: "bg-blue-200",
 };
 
 const Cell = ({ type }) => {

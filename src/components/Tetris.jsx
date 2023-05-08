@@ -3,7 +3,7 @@ import Menu from "./Menu";
 import { useGameOver } from "../hooks/useGameOver";
 import GamePanel from "./GamePanel";
 
-const Tetris = ({ rows, cols }) => {
+const Tetris = ({ row, col }) => {
 	const [gameOver, setGameOver, resetGameOver] = useGameOver();
 
 	const handleStart = () => {
@@ -14,7 +14,7 @@ const Tetris = ({ rows, cols }) => {
 		<div className="relative flex justify-center align-middle">
 			{gameOver ? <Menu onClick={handleStart} /> : null}
 
-			<GamePanel rows={rows} cols={cols} resetGameOver={resetGameOver} />
+			<GamePanel row={row} col={col} resetGameOver={resetGameOver} setGameOver={setGameOver} />
 		</div>
 	);
 };

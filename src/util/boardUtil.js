@@ -83,7 +83,6 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCompleted }) => 
 
 	if (linesCleared > 0) {
 		addLinesCompleted(linesCleared);
-		console.log(board.rows);
 	}
 
 	if (player.collided || player.isFastDropping) {

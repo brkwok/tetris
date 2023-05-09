@@ -8,6 +8,12 @@ import {
 export const useStats = () => {
 	const [stats, setStats] = useState(buildStats());
 
+	const resetStats = useCallback(() => {
+		const newStats = buildStats();
+
+		setStats(newStats);
+	}, []);
+
 	const addLinesCompleted = useCallback((linesCleared) => {
 		setStats((prevStats) => {
 			const numPoints = prevStats.score + LINE_CLEAR_SCORE[linesCleared];
@@ -33,5 +39,5 @@ export const useStats = () => {
 		}, []);
 	}, []);
 
-	return [stats, addLinesCompleted];
+	return [stats, addLinesCompleted, resetStats];
 };

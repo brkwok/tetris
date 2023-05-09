@@ -59,7 +59,7 @@ const Controller = ({ board, stats, player, gameOver, setGameOver, setPlayer }) 
 
 	return (
 		<input
-			className="absolute bg-transparent w-full h-full focus:outline-none hover:cursor-default"
+			className="absolute bg-transparent w-[100vw] h-[100vh] focus:outline-none hover:cursor-default"
 			style={{ color: "transparent", textColor: "transparent" }}
 			id="controller"
 			type="text"

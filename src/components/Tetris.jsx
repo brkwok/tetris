@@ -9,7 +9,7 @@ import GamePanel from "./GamePanel";
 const Tetris = ({ row, col }) => {
 	const [gameOver, setGameOver, resetGameOver] = useGameOver();
 	const [player, setPlayer, resetPlayer] = usePlayer();
-	const [stats, addLinesCompleted] = useStats();
+	const [stats, addLinesCompleted, resetStats] = useStats();
 	const [board, resetBoard] = useBoard({
 		row,
 		col,
@@ -22,6 +22,7 @@ const Tetris = ({ row, col }) => {
 		resetGameOver();
 		resetPlayer(true);
 		resetBoard();
+		resetStats();
 	};
 
 	return (

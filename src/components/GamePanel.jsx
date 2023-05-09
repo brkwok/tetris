@@ -4,15 +4,20 @@ import Stats from "./Stats";
 // import Hold from "./Hold";
 import Previews from "./Previews";
 import Controller from "./Controller";
+import { useBoard } from "../hooks/useBoard";
+import { useStats } from "../hooks/useStats";
+import { usePlayer } from "../hooks/usePlayer";
 
-const GamePanel = ({
-	gameOver,
-	setGameOver,
-	stats,
-	player,
-	setPlayer,
-	board
-}) => {
+const GamePanel = ({ row, col, setGameOver, resetGameOver }) => {
+	const [player, setPlayer, resetPlayer] = usePlayer();
+	const [stats, addLinesCompleted] = useStats();
+	const [board] = useBoard({
+		row,
+		col,
+		player,
+		resetPlayer,
+		addLinesCompleted,
+	});
 
 	return (
 		<div className="relative flex justify-center items-center h-fit w-fit">
@@ -24,8 +29,8 @@ const GamePanel = ({
 				board={board}
 				stats={stats}
 				player={player}
+				resetGameOver={resetGameOver}
 				setGameOver={setGameOver}
-				gameOver={gameOver}
 				setPlayer={setPlayer}
 			/>
 		</div>

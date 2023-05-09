@@ -70,7 +70,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCompleted }) => 
 	let linesCleared = 0;
 	const newBoard = [];
 
-	board.rows.forEach( (row) => {
+	rows.forEach( (row) => {
 		if (row.every( (col) => col.filled)) {
 			linesCleared++;
 			newBoard.unshift([...blankRow]);
@@ -79,7 +79,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCompleted }) => 
 		}
 	})
 
-	board.rows = newBoard;
+	rows = newBoard;
 
 	if (linesCleared > 0) {
 		addLinesCompleted(linesCleared);

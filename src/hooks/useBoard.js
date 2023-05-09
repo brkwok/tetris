@@ -11,19 +11,24 @@ export const useBoard = ({
 }) => {
 	const [board, setBoard] = useState(createBoard({ row, col }));
 
-	const resetBoard = useCallback( () => {
-		const newBoard = createBoard({row, col});
+	const resetBoard = useCallback(() => {
+		const newBoard = createBoard({ row, col });
 		setBoard(newBoard);
-	}, [row, col])
+	}, [row, col]);
 
 	useEffect(() => {
 		setBoard((prevBoard) => {
-			return nextBoard({
-				board: prevBoard,
+			const next = nextBoard({
+				board: { rows: prevBoard.rows, dims: { ...prevBoard.dims } },
 				player,
 				resetPlayer,
 				addLinesCompleted,
 			});
+
+			return {
+				rows: next.rows,
+				dims: { ...next.dims },
+			};
 		});
 	}, [player, resetPlayer, addLinesCompleted]);
 

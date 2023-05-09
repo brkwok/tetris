@@ -16,6 +16,7 @@ export const useStats = () => {
 
 	const addLinesCompleted = useCallback((linesCleared) => {
 		setStats((prevStats) => {
+			console.log(prevStats);
 			const numPoints = prevStats.score + LINE_CLEAR_SCORE[linesCleared];
 			const { linesPerLevel } = prevStats;
 			const newLinesCompleted = prevStats.linesCompleted + linesCleared;

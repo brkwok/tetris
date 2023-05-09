@@ -68,18 +68,18 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCompleted }) => 
 
 	const blankRow = board.rows[0].map((_) => ({ ...defaultCell }));
 	let linesCleared = 0;
+	const newBoard = [];
 
-	board.rows = board.rows.reduce((acc, row) => {
-		if (row.every((col) => col.filled)) {
+	board.rows.forEach( (row) => {
+		if (row.every( (col) => col.filled)) {
 			linesCleared++;
-			acc.unshift([...blankRow]);
-		} else {
-			acc.push(row);
+			newBoard.unshift([...blankRow]);
+		}	else {
+			newBoard.push(row);
 		}
+	})
 
-		return acc;
-	}, []);
-
+	board.rows = newBoard;
 
 	if (linesCleared > 0) {
 		addLinesCompleted(linesCleared);

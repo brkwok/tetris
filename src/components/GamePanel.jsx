@@ -6,14 +6,10 @@ import Previews from "./Previews";
 import Controller from "./Controller";
 
 const GamePanel = ({
-	row,
-	col,
 	gameOver,
 	setGameOver,
 	stats,
-	addLinesCompleted,
 	player,
-	resetPlayer,
 	setPlayer,
 	board
 }) => {

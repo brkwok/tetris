@@ -8,10 +8,16 @@ import { useBoard } from "../hooks/useBoard";
 import { useStats } from "../hooks/useStats";
 import { usePlayer } from "../hooks/usePlayer";
 
-const GamePanel = ({ row, col, resetGameOver, setGameOver }) => {
-	const [stats, addLinesCompleted] = useStats();
+const GamePanel = ({
+	row,
+	col,
+	resetGameOver,
+	setGameOver,
+	stats,
+	addLinesCompleted,
+}) => {
 	const [player, setPlayer, resetPlayer] = usePlayer();
-	const [board, setBoard] = useBoard({
+	const [board] = useBoard({
 		row,
 		col,
 		player,
@@ -19,9 +25,11 @@ const GamePanel = ({ row, col, resetGameOver, setGameOver }) => {
 		addLinesCompleted,
 	});
 
+	console.log(stats);
+
 	return (
 		<div className="relative flex justify-center items-center h-fit w-fit">
-			<Board rows={board.rows} dims={board.dims} />
+			<Board rows={board.rows} />
 			<Stats stats={stats} />
 			<Previews tetrominoes={player.tetrominoes} />
 			<Hold />

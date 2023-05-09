@@ -1,7 +1,7 @@
 import React from "react";
 
 const Stats = ({ stats }) => {
-	let { level, score, linesCompleted, linesPerLevel } = stats;
+	const { level, score, linesCompleted, linesPerLevel } = stats;
 	const linesLeft = linesPerLevel - linesCompleted;
 
 	return (

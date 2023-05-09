@@ -2,10 +2,10 @@ import { useState, useCallback } from "react";
 
 import { randomTetrominoes } from "../util/Tetrominoes";
 
-const buildPlayer = (prev) => {
+export const buildPlayer = (prev, newGame) => {
 	let tetrominoes;
 
-	if (prev) {
+	if (prev && !newGame) {
 		tetrominoes = [...prev.tetrominoes];
 		tetrominoes.unshift(randomTetrominoes());
 	} else {
@@ -27,8 +27,8 @@ const buildPlayer = (prev) => {
 export const usePlayer = () => {
 	const [player, setPlayer] = useState(buildPlayer());
 
-	const resetPlayer = useCallback(() => {
-		setPlayer((prev) => buildPlayer(prev));
+	const resetPlayer = useCallback((newGame = false) => {
+		setPlayer((prev) => buildPlayer(prev, newGame));
 	}, []);
 
 	return [player, setPlayer, resetPlayer];

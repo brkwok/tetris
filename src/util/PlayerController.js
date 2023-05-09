@@ -99,14 +99,15 @@ export const playerController = ({
 	board,
 	player,
 	setPlayer,
+	gameOver,
 	setGameOver,
 }) => {
-	if (!action) return;
+	if (!action || gameOver) return;
 
 	if (action === Action.RotateRight || action === Action.RotateLeft) {
 		const dir = action;
 		attempRotation({ board, player, setPlayer, dir });
 	} else {
-		attemptMove({ board, player, setPlayer, action, setGameOver });
+		attemptMove({ board, player, setPlayer, action, setGameOver, gameOver });
 	}
 };

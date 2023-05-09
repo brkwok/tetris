@@ -24,3 +24,7 @@ export const KeyMap = {
 };
 
 export const actionForKey = (key) => KeyMap[key];
+
+export const actionIsDrop = (key) => {
+	return [Action.FastDrop, Action.SlowDrop].includes(key);
+}

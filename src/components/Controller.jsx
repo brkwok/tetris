@@ -1,11 +1,11 @@
 import React from "react";
-import { Action, actionForKey } from "../util/actionUtil";
+import { Action, actionForKey, actionIsDrop } from "../util/actionUtil";
 import { playerController } from "../util/PlayerController";
 import { useInterval } from "../hooks/useInterval";
 import { useDropTime } from "../hooks/useDropTime";
 
-const Controller = ({ board, stats, player, setGameOver, setPlayer }) => {
-  const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({ stats })
+const Controller = ({ board, stats, player, gameOver, setGameOver, setPlayer }) => {
+	const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({ stats });
 
 	useInterval(() => {
 		handleInput({ action: Action.SlowDrop });
@@ -14,16 +14,36 @@ const Controller = ({ board, stats, player, setGameOver, setPlayer }) => {
 	const onKeyDown = ({ code }) => {
 		const action = actionForKey(code);
 
-    if (action === Action.Pause) {
-      if (dropTime) {
-        pauseDropTime();
-      } else {
-        resumeDropTime();
-      }
-    } else if (action === Action.Quit) {
-      setGameOver(true);
-    }
-		handleInput({ action });
+		if (action === Action.Pause) {
+			if (dropTime) {
+				pauseDropTime();
+			} else {
+				resumeDropTime();
+			}
+		} else if (action === Action.Quit) {
+			setGameOver(true);
+		} else {
+			if (actionIsDrop(action)) {
+        if (!dropTime){
+          pauseDropTime();
+        }
+        handleInput(action);
+			}
+
+			if (!dropTime) {
+				return;
+			}
+
+			handleInput({ action });
+		}
+	};
+
+	const onKeyUp = ({ code }) => {
+		const action = actionForKey(code);
+
+		if (actionIsDrop(action)) {
+			resumeDropTime();
+		}
 	};
 
 	const handleInput = ({ action }) => {
@@ -32,11 +52,21 @@ const Controller = ({ board, stats, player, setGameOver, setPlayer }) => {
 			board,
 			player,
 			setPlayer,
+      gameOver,
 			setGameOver,
 		});
 	};
 
-	return <input className="absolute" type="text" onKeyDown={onKeyDown} />;
+	return (
+		<input
+			className="absolute bg-transparent w-full h-full focus:outline-none hover:cursor-default"
+			style={{ color: "transparent", textColor: "transparent" }}
+			id="controller"
+			type="text"
+			onKeyDown={onKeyDown}
+			onKeyUp={onKeyUp}
+		/>
+	);
 };
 
 export default Controller;
